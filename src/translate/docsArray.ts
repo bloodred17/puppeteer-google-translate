@@ -1,15 +1,15 @@
 import launch from '../launch';
 import { ElementHandle } from 'puppeteer';
-import { PuppeteerOptions } from '../types';
 import { errFileSize, errFileType } from '../error';
 import { isExtensionValid, isFileSizeValid } from '../utils/docsValid';
+import { PptrLaunchOptions } from '../types';
 
 export default async (
 	query: string[],
 	path: string[],
-	opt: PuppeteerOptions
+	launchOptions?: PptrLaunchOptions
 ): Promise<string[]> => {
-	const { browser, page, timeout } = await launch(opt);
+	const { browser, page, timeout } = await launch(launchOptions);
 	const result: string[] = [];
 	for (let i = 0; i < query.length; i++) {
 		try {

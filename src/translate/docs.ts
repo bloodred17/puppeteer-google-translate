@@ -1,18 +1,18 @@
 import launch from '../launch';
 import { ElementHandle } from 'puppeteer';
-import { PuppeteerOptions } from '../types';
 import { errFileSize, errFileType } from '../error';
 import { isExtensionValid, isFileSizeValid } from '../utils/docsValid';
+import { PptrLaunchOptions } from '../types';
 
 export default async (
 	query: string,
 	path: string,
-	opt: PuppeteerOptions
+	launcOptions?: PptrLaunchOptions
 ): Promise<string> => {
 	const extension: string = path.split('.').pop();
 	if (!isExtensionValid(extension)) return errFileType(extension);
 	if (!isFileSizeValid(path)) return errFileSize();
-	const { browser, page, timeout } = await launch(opt);
+	const { browser, page, timeout } = await launch(launcOptions);
 	try {
 		await page.goto('https://translate.google.com/' + query);
 		const [fileChooser] = await Promise.all([

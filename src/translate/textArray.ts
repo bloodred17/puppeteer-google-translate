@@ -1,11 +1,11 @@
 import launch from '../launch';
-import { PuppeteerOptions } from '../types';
+import { PptrLaunchOptions } from '../types';
 
 export default async (
 	query: string[],
-	opt: PuppeteerOptions
+	launchOptions?: PptrLaunchOptions
 ): Promise<string[]> => {
-	const { browser, page, timeout } = await launch(opt);
+	const { browser, page, timeout } = await launch(launchOptions);
 	const result: string[] = [];
 	for (let i = 0; i < query.length; i++) {
 		try {

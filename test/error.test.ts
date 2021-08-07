@@ -1,30 +1,32 @@
-import { Options } from '../src/types';
 import { translateText, translateDocs } from '../src/index';
+import { PptrLaunchOptions, TranslationOptions } from '../src/types';
 
-const opt: Options = { to: 'eo', headless: false };
+const translationOptions: TranslationOptions = { to: 'es'};
+const launchOptions: PptrLaunchOptions = { headless: true };
+
 
 jest.setTimeout(10000);
 
 describe('fileSize', () => {
 	test('docs', async () => {
 		await expect(
-			translateDocs('./test/assets/limit.txt', opt)
+			translateDocs('./test/assets/limit.txt', translationOptions, launchOptions)
 		).rejects.toThrow();
 	});
 	test('docsArray', async () => {
 		await expect(
-			translateDocs(['./test/assets/limit.txt'], opt)
+			translateDocs(['./test/assets/limit.txt'], translationOptions, launchOptions)
 		).rejects.toThrow();
 	});
 });
 
 describe('fileType', () => {
 	test('docs', async () => {
-		await expect(translateDocs('./test/assets/err.err', opt)).rejects.toThrow();
+		await expect(translateDocs('./test/assets/err.err', translationOptions, launchOptions)).rejects.toThrow();
 	});
 	test('docsArray', async () => {
 		await expect(
-			translateDocs(['./test/assets/err.err'], opt)
+			translateDocs(['./test/assets/err.err'], translationOptions, launchOptions)
 		).rejects.toThrow();
 	});
 });
@@ -32,22 +34,22 @@ describe('fileType', () => {
 describe('invalidType', () => {
 	test('text', async () => {
 		expect(() => {
-			translateText(null, opt);
+			translateText(null, translationOptions, launchOptions);
 		}).toThrow();
 	});
 	test('textArray', async () => {
 		expect(() => {
-			translateText(null, opt);
+			translateText(null, translationOptions, launchOptions);
 		}).toThrow();
 	});
 	test('docs', async () => {
 		expect(() => {
-			translateDocs(null, opt);
+			translateDocs(null, translationOptions, launchOptions);
 		}).toThrow();
 	});
 	test('docsArray', async () => {
 		expect(() => {
-			translateDocs(null, opt);
+			translateDocs(null, translationOptions, launchOptions);
 		}).toThrow();
 	});
 });
@@ -55,12 +57,12 @@ describe('invalidType', () => {
 describe('textOverflow', () => {
 	test('text', async () => {
 		expect(() => {
-			translateText('error'.repeat(1001), opt);
+			translateText('error'.repeat(1001), translationOptions, launchOptions);
 		}).toThrow();
 	});
 	test('textArray', async () => {
 		expect(() => {
-			translateText(['error'.repeat(1001)], opt);
+			translateText(['error'.repeat(1001)], translationOptions, launchOptions);
 		}).toThrow();
 	});
 });
@@ -68,12 +70,12 @@ describe('textOverflow', () => {
 describe('textLenZero', () => {
 	test('text', async () => {
 		expect(() => {
-			translateText('', opt);
+			translateText('', translationOptions, launchOptions);
 		}).toThrow();
 	});
 	test('textArray', async () => {
 		expect(() => {
-			translateText([''], opt);
+			translateText([''], translationOptions, launchOptions);
 		}).toThrow();
 	});
 });
@@ -81,12 +83,12 @@ describe('textLenZero', () => {
 describe('arrayLenZero', () => {
 	test('textArray', async () => {
 		expect(() => {
-			translateText([], opt);
+			translateText([], translationOptions, launchOptions);
 		}).toThrow();
 	});
 	test('docsArray', async () => {
 		expect(() => {
-			translateDocs([], opt);
+			translateDocs([], translationOptions, launchOptions);
 		}).toThrow();
 	});
 });

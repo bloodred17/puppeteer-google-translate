@@ -1,14 +1,16 @@
-export interface PuppeteerOptions {
-	headless?: boolean;
-	timeout?: number;
+import { LaunchOptions, BrowserLaunchArgumentOptions, BrowserConnectOptions, Product } from "puppeteer";
+
+export type PptrLaunchOptions = LaunchOptions & BrowserLaunchArgumentOptions & BrowserConnectOptions & {
+    product?: Product;
+    extraPrefsFirefox?: Record<string, unknown>;
 }
 
-export interface Options extends PuppeteerOptions {
+export interface TranslationOptions {
 	from?: lang | 'auto';
 	to: lang;
 }
 
-export interface Query extends Options {
+export interface Query extends TranslationOptions {
 	op: 'translate' | 'docs';
 	text?: string;
 }

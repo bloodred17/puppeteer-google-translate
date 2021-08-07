@@ -1,17 +1,16 @@
 import puppeteer from 'puppeteer';
-import { PuppeteerOptions } from './types';
+import { PptrLaunchOptions } from './types';
 
 export default async (
-	opt: PuppeteerOptions
+	launcOptions?: PptrLaunchOptions
 ): Promise<{
 	browser: puppeteer.Browser;
 	page: puppeteer.Page;
 	timeout: number;
 }> => {
-	const browser = await puppeteer.launch({
-		headless: opt.headless === null ? true : opt.headless
-	});
+	const launchOptionsDefault: PptrLaunchOptions = { headless: true, timeout: 10000 };
+	const browser = await puppeteer.launch(launcOptions || launchOptionsDefault);
 	const [page] = await browser.pages();
-	const timeout: number = opt.timeout === null ? 10000 : opt.timeout;
+	const timeout: number = launcOptions.timeout || launchOptionsDefault.timeout;
 	return { browser, page, timeout };
 };

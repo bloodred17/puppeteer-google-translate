@@ -1,6 +1,6 @@
 {
 	"name": "puppeteer-google-translate",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Translate texts or documents with Google Translate using Puppeteer",
 	"types": "lib/index.d.ts",
 	"main": "lib/index.js",
@@ -14,11 +14,11 @@
 		"google",
 		"translate"
 	],
-	"homepage": "https://github.com/alanleungcn/puppeteer-google-translate",
-	"bugs": "https://github.com/alanleungcn/puppeteer-google-translate/issues",
+	"homepage": "https://github.com/bloodred17/puppeteer-google-translate",
+	"bugs": "https://github.com/bloodred17/puppeteer-google-translate/issues",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/alanleungcn/puppeteer-google-translate"
+		"url": "https://github.com/bloodred17/puppeteer-google-translate"
 	},
 	"scripts": {
 		"test": "jest",

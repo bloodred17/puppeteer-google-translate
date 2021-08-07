@@ -1,11 +1,11 @@
 import launch from '../launch';
-import { PuppeteerOptions } from '../types';
+import { TranslationOptions, PptrLaunchOptions } from '../types';
 
 export default async (
 	query: string,
-	opt: PuppeteerOptions
+	launchOptions?: PptrLaunchOptions
 ): Promise<string> => {
-	const { browser, page, timeout } = await launch(opt);
+	const { browser, page, timeout } = await launch(launchOptions);
 	try {
 		await page.goto('https://translate.google.com/' + query);
 		const el = await page.waitForSelector('span>span>span[jsaction]', {
