@@ -4,7 +4,7 @@
 	"description": "Translate texts or documents with Google Translate using Puppeteer",
 	"types": "lib/index.d.ts",
 	"main": "lib/index.js",
-	"author": "Alan Leung",
+	"author": "Ankur Dutta",
 	"license": "MIT",
 	"files": [
 		"lib"
@@ -23,7 +23,7 @@
 	"scripts": {
 		"test": "jest",
 		"format": "prettier --w .",
-		"build": "rm -rf ./lib && tsc"
+		"build": "tsc"
 	},
 	"dependencies": {
 		"puppeteer": "^8.0.0"
